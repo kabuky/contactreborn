@@ -1,6 +1,7 @@
 package com.trunkle.contactreborn;
 
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
@@ -50,8 +52,8 @@ public class MainActivity extends FragmentActivity implements
 		final ActionBar actionBar = getActionBar();
 		
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#330000ff")));
-		actionBar.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#550000ff")));
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000ff")));
+		actionBar.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#000000ff")));
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(false);
@@ -83,9 +85,11 @@ public class MainActivity extends FragmentActivity implements
 			// the adapter. Also specify this Activity object, which implements
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
-			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+			Tab tab = actionBar.newTab();
+			//tab.setText(mSectionsPagerAdapter.getPageTitle(i));
+			tab.setTabListener(this);
+			tab.setIcon(R.drawable.dialpad);
+			actionBar.addTab(tab);
 		}
 	}
 
@@ -129,11 +133,21 @@ public class MainActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			
+			if (position == 0) {
+				Fragment fragment = new DialPadSectionFragment();
+				Bundle args = new Bundle();
+				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
+			} else {
+				Fragment fragment = new DummySectionFragment();
+				Bundle args = new Bundle();
+				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
+			}
+			
 		}
 
 		@Override
@@ -181,6 +195,27 @@ public class MainActivity extends FragmentActivity implements
 					ARG_SECTION_NUMBER)));
 			return textView;
 		}
+	}
+	
+	public static class DialPadSectionFragment extends Fragment {
+		/**
+		 * The fragment argument representing the section number for this
+		 * fragment.
+		 */
+		public static final String ARG_SECTION_NUMBER = "section_number";
+
+		public DialPadSectionFragment() {
+		}
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
+			// Create a new TextView and set its text to the fragment's section
+			// number argument value.
+			View view = inflater.inflate(R.layout.dialpad,
+			        container, false);
+			    return view;
+		}	
 	}
 
 }
