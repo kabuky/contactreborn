@@ -11,13 +11,17 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.TabHost;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
@@ -214,8 +218,30 @@ public class MainActivity extends FragmentActivity implements
 			// number argument value.
 			View view = inflater.inflate(R.layout.dialpad,
 			        container, false);
+			
+			
 			    return view;
-		}	
+		}
+		
+		@Override
+		public void onViewCreated(View view, Bundle savedInstanceState) {
+			// TODO Auto-generated method stub
+			super.onViewCreated(view, savedInstanceState);
+			
+			String s1 = "7";
+			String s2 = "A B C";
+			int n = s1.length();
+			int m = s2.length();
+			
+			Spannable span = new SpannableString(s1 + "\n" +  s2);
+			span.setSpan(new RelativeSizeSpan(3.8f), 0, n, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+			span.setSpan(new RelativeSizeSpan(1.8f), n, (n+m+1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			
+			// findViewById in Fragment only works after onCreateView
+			Button button = (Button) getView().findViewById(R.id.button1);
+			button.setText(Html.fromHtml("<h1>7</h1><br/><small>A B C</small>")); 
+			//button.setText(span);
+		}
 	}
 
 }

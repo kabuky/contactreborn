@@ -11,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="62dp"
         android:layout_marginTop="63dp"
-        android:background="@drawable/round_button"
+        android:textColor="@drawable/button_text_effect"
+		android:background="@drawable/button_effect"
         android:text="Button" />
 
 </RelativeLayout>
