@@ -5,6 +5,9 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -144,6 +147,12 @@ public class MainActivity extends FragmentActivity implements
 				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
 				return fragment;
+			} if (position == 1) {
+				Fragment fragment = new ContactListFragment();
+				Bundle args = new Bundle();
+				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment.setArguments(args);
+				return fragment;
 			} else {
 				Fragment fragment = new DummySectionFragment();
 				Bundle args = new Bundle();
@@ -239,8 +248,22 @@ public class MainActivity extends FragmentActivity implements
 			
 			// findViewById in Fragment only works after onCreateView
 			Button button = (Button) getView().findViewById(R.id.button1);
-			button.setText(Html.fromHtml("<h1>7</h1><br/><small>A B C</small>")); 
+			//button.setText(Html.fromHtml("<h1>7</h1><br/><small>A B C</small>")); 
+			button.setText(span);
+			
+			//ShapeDrawable drawable = (ShapeDrawable) button.getBackground();
+			//drawable.getPaint().setColor(Color.CYAN);
 			//button.setText(span);
+			
+//			RoundRectShape rs = new RoundRectShape(new float[] { 10, 10, 10, 10, 10, 10, 10, 10 }, null, null);
+//			ShapeDrawable sdOff = new CustomShapeDrawable(rs, Color.RED, Color.WHITE, 20);
+//			ShapeDrawable sdOn = new CustomShapeDrawable(rs, Color.BLUE, Color.CYAN, 20);
+//			 
+//			StateListDrawable stld = new StateListDrawable();
+//			stld.addState(new int[] { android.R.attr.state_enabled }, sdOff);
+//			stld.addState(new int[] { android.R.attr.state_pressed }, sdOn);
+			
+//			button.setBackgroundDrawable(stld);
 		}
 	}
 

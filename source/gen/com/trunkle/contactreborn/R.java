@@ -19,17 +19,21 @@ public final class R {
         public static final int gradient2=0x7f020005;
         public static final int ic_launcher=0x7f020006;
         public static final int main_header_selector=0x7f020007;
-        public static final int round_button=0x7f020008;
-        public static final int rounded_button=0x7f020009;
+        public static final int robot=0x7f020008;
+        public static final int round_button=0x7f020009;
+        public static final int rounded_button=0x7f02000a;
     }
     public static final class id {
-        public static final int button1=0x7f070001;
-        public static final int menu_settings=0x7f070002;
+        public static final int button1=0x7f070003;
+        public static final int contactListView=0x7f070001;
+        public static final int menu_settings=0x7f070004;
         public static final int pager=0x7f070000;
+        public static final int text=0x7f070002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int dialpad=0x7f030001;
+        public static final int contact_list=0x7f030001;
+        public static final int dialpad=0x7f030002;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;
